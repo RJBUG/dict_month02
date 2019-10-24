@@ -4,7 +4,7 @@ dict 客户端
 """
 
 from socket import *
-import os,sys
+import sys
 import getpass
 import hashlib
 
@@ -113,16 +113,16 @@ def main():
             sockfd.send(b'Register')
             data = sockfd.recv(1024).decode()
             if data == 'OK':
-                name = register(sockfd)
+                name = register()
                 if name:
-                    do_(sockfd, name)
+                    do_(name)
         elif cmd == '2':
             sockfd.send(b'Login')
             data = sockfd.recv(1024).decode()
             if data == 'OK':
-                name = login(sockfd)
+                name = login()
                 if name:
-                    do_(sockfd, name)
+                    do_(name)
         elif cmd == '3':
             sockfd.send(b'Exit')
             sockfd.close()
